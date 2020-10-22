@@ -52,6 +52,12 @@ functions:
             cors:
               origins:
                   - '*'
+        - http:
+            path: playground
+            method: GET
+            cors:
+              origins:
+                - '*'
   websocket:
     handler: src/websocket.handler
     role: role

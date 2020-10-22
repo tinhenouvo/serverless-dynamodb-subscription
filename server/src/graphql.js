@@ -17,8 +17,8 @@ const typeDefs = gql`
 
 const resolvers = {
 	Mutation: {
-		sendMessage: async (root, { message }) => {
-			await publish('MY_TOPIC', { listenMessage: message })
+		sendMessage: async (root, {message}) => {
+			await publish('MY_TOPIC', {listenMessage: message})
 			return message
 		}
 	},
@@ -34,7 +34,12 @@ export const schema = makeExecutableSchema({
 	resolvers,
 })
 
-const server = new ApolloServer({ schema })
+const server = new ApolloServer(
+	{
+		schema, playground: {
+			endpoint: '/graphql' // I think this is the default one
+		},
+	})
 
 export const handler = server.createHandler({
 	cors: {
